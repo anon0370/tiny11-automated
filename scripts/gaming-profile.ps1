@@ -399,7 +399,7 @@ function Invoke-GamingAppxRemoval {
         [string]$ScratchDir
     )
 
-    $prefixes = Get-GamingEnabledPrefixes -Profile $Profile -Groups $Groups -Section 'appxPrefixes' -Field 'prefix'
+    $prefixes = @(Get-GamingEnabledPrefixes -Profile $Profile -Groups $Groups -Section 'appxPrefixes' -Field 'prefix')
     if ($prefixes.Count -eq 0) {
         Write-GamingLog "AppX removal: no groups enabled, skipping"
         return
@@ -435,7 +435,7 @@ function Invoke-GamingSystemPackageRemoval {
         [string]$ScratchDir
     )
 
-    $patterns = Get-GamingEnabledPrefixes -Profile $Profile -Groups $Groups -Section 'systemPackages' -Field 'pattern'
+    $patterns = @(Get-GamingEnabledPrefixes -Profile $Profile -Groups $Groups -Section 'systemPackages' -Field 'pattern')
     if ($patterns.Count -eq 0) {
         Write-GamingLog "System package removal: no groups enabled, skipping"
         return
@@ -473,7 +473,7 @@ function Invoke-GamingOptionalFeatureRemoval {
         [string]$ScratchDir
     )
 
-    $features = Get-GamingEnabledPrefixes -Profile $Profile -Groups $Groups -Section 'optionalFeatures' -Field 'name'
+    $features = @(Get-GamingEnabledPrefixes -Profile $Profile -Groups $Groups -Section 'optionalFeatures' -Field 'name')
     if ($features.Count -eq 0) {
         Write-GamingLog "Optional feature removal: no groups enabled, skipping"
         return
